@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from 'express'
+
 export type THttpResponse = {
     success: boolean
     statusCode: number
@@ -22,3 +24,6 @@ export type THttpError = {
     data: unknown
     trace?: object | null
 }
+
+export type TAsyncHandler = (req: Request, res: Response, next: NextFunction) => Promise<void>
+
