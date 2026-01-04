@@ -8,6 +8,11 @@ export function asyncHandler(fn: TAsyncHandler) {
         try {
             await fn(req, res, next)
         } catch (err) {
+            // Check if headers already sent to prevent crash
+            if (res.headersSent) {
+                return next(err)
+            }
+
             if (err instanceof AppError) {
                 return httpError(next, err, req, err.statusCode)
             }

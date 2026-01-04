@@ -22,6 +22,7 @@ export type THttpError = {
     }
     message: string
     data: unknown
+    errorCode?: string
     trace?: object | null
 }
 
