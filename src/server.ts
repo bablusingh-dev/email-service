@@ -1,7 +1,7 @@
 import app from './app'
 import config from './configs/config'
 import logger from './utils/logger'
-import loggerDatabaseService from './services/databaseService'
+import loggerDatabaseService from './database/loggerDatabaseService'
 const server = app.listen(config.PORT)
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
