@@ -1,14 +1,14 @@
-// import mongoose from 'mongoose'
-// import config from '../configs/config'
+import mongoose from 'mongoose'
+import config from '../configs/config'
 
-// export default {
-//     connect: async () => {
-//         try {
-//             await mongoose.connect(config.DATABASE_URL as string)
-//             return mongoose.connection
-//         } catch (err) {
-//             throw err
-//         }
-//     }
-// }
+export default {
+    connect: async () => {
+        try {
+            await mongoose.connect(config.MONGODB_DATABASE_URL as string)
+            return mongoose.connection
+        } catch (err) {
+            throw err
+        }
+    }
+}
 

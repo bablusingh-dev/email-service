@@ -7,4 +7,6 @@ export default {
     ENV: process.env.ENV,
     PORT: process.env.PORT,
     SERVER_URL: process.env.SERVER_URL,
+    MONGODB_DATABASE_URL: process.env.MONGODB_DATABASE_URL,
 } as const
+
