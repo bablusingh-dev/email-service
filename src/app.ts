@@ -7,6 +7,7 @@ import httpError from './utils/httpError'
 import helmet from 'helmet'
 import cors from 'cors'
 
+
 const app: Application = express()
 
 // Middleware

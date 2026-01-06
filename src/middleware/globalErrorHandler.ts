@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { THttpError } from '../types/types'
+import { THttpError } from '../types/common.types'
 
- 
 export default (err: THttpError, _: Request, res: Response, __: NextFunction) => {
     res.status(err.statusCode).json(err)
 }

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { TAsyncHandler } from '../types/types'
+import { TAsyncHandler } from '../types/common.types'
 import httpError from './httpError'
 import { AppError } from './appError'
 

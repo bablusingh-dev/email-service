@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { THttpError } from '../types/types'
+import { THttpError } from '../types/common.types'
 import responseMessage from '../constants/responseMessage'
 import config from '../configs/config'
 import { EApplicationEnvironment } from '../constants/application'
@@ -26,12 +26,12 @@ export default (err: Error | unknown, req: Request, errorStatusCode: number = 50
         logger.error(`CONTROLLER_ERROR`, {
             meta: JSON.parse(JSON.stringify(errorObj)) as THttpError
         })
-    } catch  {
+    } catch {
         logger.error(`CONTROLLER_ERROR`, {
-            meta: { 
-                message: errorObj.message, 
+            meta: {
+                message: errorObj.message,
                 statusCode: errorObj.statusCode,
-                errorCode: errorObj.errorCode 
+                errorCode: errorObj.errorCode
             }
         })
     }
@@ -43,4 +43,3 @@ export default (err: Error | unknown, req: Request, errorStatusCode: number = 50
 
     return errorObj
 }
-

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { THttpResponse } from '../types/types'
+import { THttpResponse } from '../types/common.types'
 import config from '../configs/config'
 import { EApplicationEnvironment } from '../constants/application'
 import logger from './logger'
