@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
-import { THttpResponse } from '../types/common.types'
+import { EApplicationEnvironment, THttpResponse } from '../types/common.types'
 import config from '../configs/config'
-import { EApplicationEnvironment } from '../constants/application'
 import logger from './logger'
 
 export default (req: Request, res: Response, responseStatusCode: number, responseMessage: string, resData: unknown = null): void => {

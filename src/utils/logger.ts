@@ -3,10 +3,10 @@ import 'winston-mongodb'
 import { createLogger, format, transports } from 'winston'
 import { ConsoleTransportInstance } from 'winston/lib/winston/transports'
 import config from '../configs/config'
-import { EApplicationEnvironment } from '../constants/application'
 import { red, blue, yellow, green, magenta } from 'colorette'
 import * as sourceMapSupport from 'source-map-support'
 import { MongoDBTransportInstance } from 'winston-mongodb'
+import { EApplicationEnvironment } from '../types/common.types'
 
 // Linking Trace Support
 sourceMapSupport.install()
@@ -57,9 +57,7 @@ const consoleTransport = (): Array<ConsoleTransportInstance> => {
 }
 
 const MongodbTransport = (): Array<MongoDBTransportInstance> => {
-     
     return [
-         
         new transports.MongoDB({
             level: 'info',
             db: config.MONGODB_DATABASE_URL as string,
@@ -74,6 +72,6 @@ export default createLogger({
     defaultMeta: {
         meta: {}
     },
-     
+
     transports: [...MongodbTransport(), ...consoleTransport()]
 })

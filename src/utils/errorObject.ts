@@ -1,8 +1,7 @@
 import { Request } from 'express'
-import { THttpError } from '../types/common.types'
+import { EApplicationEnvironment, THttpError } from '../types/common.types'
 import responseMessage from '../constants/responseMessage'
 import config from '../configs/config'
-import { EApplicationEnvironment } from '../constants/application'
 import logger from './logger'
 import { AppError } from './appError'
 

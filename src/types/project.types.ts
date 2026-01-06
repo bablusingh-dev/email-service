@@ -1,4 +1,4 @@
-import { EmailProvider, Environment, Timestamps } from './common.types'
+import { EmailProvider, EApplicationEnvironment, Timestamps } from './common.types'
 
 // ==================== PROJECT TYPES ====================
 export interface Project extends Timestamps {
@@ -14,7 +14,7 @@ export interface Project extends Timestamps {
     webhookUrl: string | null
     rateLimitPerMinute: number
     isActive: boolean
-    environment: Environment
+    environment: EApplicationEnvironment
 }
 
 export interface CreateProjectDto {
@@ -28,7 +28,7 @@ export interface CreateProjectDto {
     domain?: string
     webhookUrl?: string
     rateLimitPerMinute?: number
-    environment?: Environment
+    environment?: EApplicationEnvironment
 }
 
 export interface UpdateProjectDto {
@@ -43,7 +43,7 @@ export interface UpdateProjectDto {
     webhookUrl?: string
     rateLimitPerMinute?: number
     isActive?: boolean
-    environment?: Environment
+    environment?: EApplicationEnvironment
 }
 
 export interface ProjectWithDecryptedKey extends Omit<Project, 'providerApiKeyEncrypted'> {

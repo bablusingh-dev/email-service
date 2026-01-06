@@ -21,8 +21,8 @@ export enum EmailPriority {
     HIGHEST = 10
 }
 
-export enum Environment {
-    DEVELOPMENT = 'dev',
+export enum EApplicationEnvironment {
+    DEVELOPMENT = 'development',
     STAGING = 'staging',
     PRODUCTION = 'production'
 }
