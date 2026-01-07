@@ -11,7 +11,10 @@
         "lint:fix": "eslint --fix",
         "format:check": "prettier . --check",
         "format:fix": "prettier . --fix",
-        "prepare": "husky"
+        "prepare": "husky",
+        "db:generate": "drizzle-kit generate",
+        "db:migrate": "drizzle-kit migrate",
+        "db:studio": "drizzle-kit studio"
     },
     "author": "Bablu Singh",
     "license": "ISC",
