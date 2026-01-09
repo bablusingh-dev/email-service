@@ -24,7 +24,8 @@ export enum EmailPriority {
 export enum EApplicationEnvironment {
     DEVELOPMENT = 'development',
     STAGING = 'staging',
-    PRODUCTION = 'production'
+    PRODUCTION = 'production',
+    TESTING = 'testing'
 }
 
 export enum EmailProvider {
