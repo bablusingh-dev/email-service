@@ -1,5 +1,5 @@
 import { IBaseRepository } from './IBaseRepository.js'
-import { Project, CreateProjectDto, UpdateProjectDto, ProjectStats } from '../../types/project.types.js'
+import { Project, CreateProjectDto, UpdateProjectDto } from '../../types/project.types.js'
 import { EApplicationEnvironment } from '../../types/common.types.js'
 
 /**
@@ -25,7 +25,7 @@ export interface IProjectRepository extends IBaseRepository<Project, CreateProje
     /**
      * Get project statistics (email counts, etc.)
      */
-    getProjectStats(projectId: number): Promise<ProjectStats | null>
+    // getProjectStats(projectId: number): Promise<ProjectStats | null>
 
     /**
      * Toggle project active status
