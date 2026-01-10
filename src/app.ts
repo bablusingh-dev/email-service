@@ -1,12 +1,12 @@
 import express, { Application, NextFunction, Request, Response } from 'express'
 import path from 'path'
 import router from './routes/apiRouter'
+import adminRouter from './routes/adminRouter'
 import globalErrorHandler from './middleware/globalErrorHandler'
 import responseMessage from './constants/responseMessage'
 import httpError from './utils/httpError'
 import helmet from 'helmet'
 import cors from 'cors'
-
 
 const app: Application = express()
 
@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 
 // Routes
 app.use('/', router)
+app.use('/api/v1/admin', adminRouter)
 
 // 404 Handler
 app.use((req: Request, _: Response, next: NextFunction) => {
@@ -38,4 +39,3 @@ app.use((req: Request, _: Response, next: NextFunction) => {
 app.use(globalErrorHandler)
 
 export default app
-

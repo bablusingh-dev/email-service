@@ -48,7 +48,7 @@ export class DrizzleProjectRepository implements IProjectRepository {
                 domain: data.domain || null,
                 webhookUrl: data.webhookUrl || null,
                 rateLimitPerMinute: data.rateLimitPerMinute || 10,
-                environment: data.environment || EApplicationEnvironment.PRODUCTION,
+                environment: data.environment || EApplicationEnvironment.DEVELOPMENT,
                 updatedAt: new Date()
             })
             .returning()

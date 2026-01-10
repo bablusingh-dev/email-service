@@ -1,7 +1,8 @@
 import Joi from 'joi'
 import { EApplicationEnvironment, EmailProvider } from '../types/common.types'
+import { CreateProjectDto, UpdateProjectDto } from '../types/project.types'
 
-export const createProjectSchema = Joi.object({
+export const createProjectSchema = Joi.object<CreateProjectDto>({
     name: Joi.string().min(3).max(255).required(),
     description: Joi.string().max(1000).optional(),
     provider: Joi.string()
@@ -19,7 +20,7 @@ export const createProjectSchema = Joi.object({
         .optional()
 })
 
-export const updateProjectSchema = Joi.object({
+export const updateProjectSchema = Joi.object<UpdateProjectDto>({
     name: Joi.string().min(3).max(255).optional(),
     description: Joi.string().max(1000).optional(),
     provider: Joi.string()
