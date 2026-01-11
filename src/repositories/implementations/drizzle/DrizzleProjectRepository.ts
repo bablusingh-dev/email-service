@@ -74,7 +74,7 @@ export class DrizzleProjectRepository implements IProjectRepository {
         return result || null
     }
     async delete(id: number): Promise<boolean> {
-        const result = await db.delete(projects).where(eq(projects.id, id))
+        const result = await db.delete(projects).where(eq(projects.id, id)).returning()
         return result.length > 0
     }
     async count(): Promise<number> {
@@ -93,6 +93,7 @@ export class DrizzleProjectRepository implements IProjectRepository {
         const result = await db.select().from(projects).where(eq(projects.isActive, true))
         return result
     }
+    //TODO: implement
     // getProjectStats(projectId: number): ProjectStats | null {
 
     //     return null

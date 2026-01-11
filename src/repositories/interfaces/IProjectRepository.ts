@@ -22,6 +22,7 @@ export interface IProjectRepository extends IBaseRepository<Project, CreateProje
      */
     findActive(): Promise<Project[]>
 
+    // TODO:
     /**
      * Get project statistics (email counts, etc.)
      */
