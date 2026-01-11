@@ -17,6 +17,7 @@ export default (err: Error | unknown, req: Request, errorStatusCode: number = 50
         },
         message: err instanceof Error ? err.message || responseMessage.SOMETHING_WENT_WRONG : responseMessage.SOMETHING_WENT_WRONG,
         data: null,
+        details: err instanceof AppError ? err.details : undefined,
         errorCode: err instanceof AppError ? err.errorCode : undefined,
         trace: err instanceof Error ? { error: err.stack } : null
     }

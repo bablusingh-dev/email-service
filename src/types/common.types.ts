@@ -57,6 +57,7 @@ export type THttpError = {
     }
     message: string
     data: unknown
+    details?: unknown
     errorCode?: string
     trace?: object | null
 }
