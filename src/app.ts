@@ -7,6 +7,7 @@ import responseMessage from './constants/responseMessage'
 import httpError from './utils/httpError'
 import helmet from 'helmet'
 import cors from 'cors'
+import { globalRateLimit } from './middleware/rateLimit'
 
 const app: Application = express()
 
@@ -20,6 +21,7 @@ app.use(
     })
 )
 app.use(express.json())
+app.use(globalRateLimit)
 app.use(express.static(path.join(__dirname, '../', 'public')))
 
 // Routes
