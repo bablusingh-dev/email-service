@@ -61,3 +61,37 @@ export interface ProjectStats {
         failed: number
     }
 }
+
+
+// ==================== API KEY TYPES ====================
+export interface ApiKey extends Timestamps {
+    id: number
+    projectId: number
+    keyName: string
+    keyHash: string // SHA-256 hash
+    keyPrefix: string // First 8 chars for display
+    isActive: boolean
+    lastUsedAt: Date | null
+    expiresAt: Date | null
+}
+
+export interface CreateApiKeyDto {
+    projectId: number
+    keyName: string
+    expiresAt?: Date
+}
+
+export interface UpdateApiKeyDto {
+    keyName?: string
+    isActive?: boolean
+    expiresAt?: Date
+}
+
+export interface ApiKeyWithPlainText extends ApiKey {
+    plainTextKey: string // Only returned on creation
+}
+
+export interface ValidatedApiKey {
+    apiKey: ApiKey
+    project: Project
+}
