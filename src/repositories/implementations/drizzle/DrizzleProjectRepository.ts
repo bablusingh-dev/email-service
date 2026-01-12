@@ -70,6 +70,10 @@ export class DrizzleProjectRepository implements IProjectRepository {
         if (data.rateLimitPerMinute) updateData.rateLimitPerMinute = data.rateLimitPerMinute
         if (data.environment) updateData.environment = data.environment
 
+        if (Object.keys(updateData).length === 0) {
+            return this.findById(id)
+        }
+
         const [result] = await db.update(projects).set(updateData).where(eq(projects.id, id)).returning()
         return result || null
     }
