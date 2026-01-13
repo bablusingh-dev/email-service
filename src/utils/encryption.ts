@@ -71,3 +71,30 @@ export function validateEncryptionKey(): boolean {
 
     return true
 }
+
+/**
+ * Hash text using SHA-256
+ * Used for hashing API keys before storing in database
+ */
+export function hash(text: string): string {
+    return crypto.createHash('sha256').update(text).digest('hex')
+}
+
+/**
+ * Generate a random API key with the specified prefix
+ * Format: prefix_base64urlRandomBytes
+ */
+export function generateApiKey(prefix: string = 'eqs_'): string {
+    const randomBytes = crypto.randomBytes(32)
+    const base64url = randomBytes.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+
+    return `${prefix}${base64url}`
+}
+
+/**
+ * Extract the prefix from an API key (first 8 characters)
+ * Used for display and quick lookup
+ */
+export function extractKeyPrefix(apiKey: string): string {
+    return apiKey.slice(0, 12) // eqs_ + 8 chars
+}
