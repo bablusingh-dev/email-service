@@ -1,6 +1,6 @@
 import Joi from 'joi'
 import { EApplicationEnvironment, EmailProvider } from '../types/common.types'
-import { CreateProjectDto, UpdateProjectDto } from '../types/project.types'
+import { CreateApiKeyDto, CreateProjectDto, UpdateApiKeyDto, UpdateProjectDto } from '../types/project.types'
 
 export const createProjectSchema = Joi.object<CreateProjectDto>({
     name: Joi.string().min(3).max(255).required(),
@@ -40,12 +40,12 @@ export const updateProjectSchema = Joi.object<UpdateProjectDto>({
 
 // ==================== API KEY SCHEMAS ====================
 
-export const createApiKeySchema = Joi.object({
+export const createApiKeySchema = Joi.object<CreateApiKeyDto>({
     keyName: Joi.string().min(3).max(255).required(),
     expiresAt: Joi.date().greater('now').optional()
-})
+}).required()
 
-export const updateApiKeySchema = Joi.object({
+export const updateApiKeySchema = Joi.object<UpdateApiKeyDto>({
     keyName: Joi.string().min(3).max(255).optional(),
     isActive: Joi.boolean().optional(),
     expiresAt: Joi.date().greater('now').optional()

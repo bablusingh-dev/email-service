@@ -40,4 +40,9 @@ export interface IApiKeyRepository extends IBaseRepository<ApiKey, CreateApiKeyD
      * Delete all API keys for a project
      */
     deleteByProjectId(projectId: number): Promise<number>
+
+    /**
+     * Update hash and prefix for an API key (internal use)
+     */
+    updateHashAndPrefix(id: number, keyHash: string, keyPrefix: string): Promise<void>
 }
