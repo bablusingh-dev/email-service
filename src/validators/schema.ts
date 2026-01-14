@@ -37,3 +37,16 @@ export const updateProjectSchema = Joi.object<UpdateProjectDto>({
         .valid(...Object.values(EApplicationEnvironment))
         .optional()
 }).min(1)
+
+// ==================== API KEY SCHEMAS ====================
+
+export const createApiKeySchema = Joi.object({
+    keyName: Joi.string().min(3).max(255).required(),
+    expiresAt: Joi.date().greater('now').optional()
+})
+
+export const updateApiKeySchema = Joi.object({
+    keyName: Joi.string().min(3).max(255).optional(),
+    isActive: Joi.boolean().optional(),
+    expiresAt: Joi.date().greater('now').optional()
+}).min(1)
