@@ -77,7 +77,7 @@ export class DrizzleApiKeyRepository implements IApiKeyRepository {
      * Delete a record by ID
      */
     async delete(id: number): Promise<boolean> {
-        const result = await db.delete(apiKeys).where(eq(apiKeys.id, id))
+        const result = await db.delete(apiKeys).where(eq(apiKeys.id, id)).returning()
         return result.length > 0
     }
 
