@@ -112,6 +112,30 @@ export async function checkRateLimit(
     }
 }
 
+/**
+ * Cache API key validation result
+ */
+export async function cacheApiKey(keyHash: string, data: string, ttl: number = 300): Promise<void> {
+    const redisClient = getRedis()
+    await redisClient.set(`apikey:${keyHash}`, data, 'EX', ttl)
+}
+
+/**
+ * Get cached API key validation result
+ */
+export async function getCachedApiKey(keyHash: string): Promise<string | null> {
+    const redisClient = getRedis()
+    return await redisClient.get(`apikey:${keyHash}`)
+}
+
+/**
+ * Invalidate API key cache
+ */
+export async function invalidateApiKeyCache(keyHash: string): Promise<void> {
+    const redisClient = getRedis()
+    await redisClient.del(`apikey:${keyHash}`)
+}
+
 export const closeRedisConnection = async () => {
     if (!redis) {
         logger.warn('Redis is not connected.')
