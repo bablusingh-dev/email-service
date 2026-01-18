@@ -107,7 +107,7 @@ Login via the REST API:
       "name": "Admin User",
       "role": "ADMIN"
     },
-      "accessToken": "access token",
+       "accessToken": "access token",
        "refreshToken": "refresh token"
   }
 }
