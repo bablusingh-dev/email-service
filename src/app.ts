@@ -8,6 +8,7 @@ import httpError from './utils/httpError'
 import helmet from 'helmet'
 import cors from 'cors'
 import { globalRateLimit } from './middleware/rateLimit'
+import authRouer from './routes/authRouter'
 
 const app: Application = express()
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 
 // Routes
 app.use('/', router)
+app.use('/api/v1/auth', authRouer)
 app.use('/api/v1/admin', adminRouter)
 
 // 404 Handler
