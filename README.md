@@ -84,7 +84,7 @@ npm run cli:signup admin@example.com SecurePass123 "Admin User"
 
 Login via the REST API:
 
-**Endpoint:** `POST /auth/login`
+**Endpoint:** `POST /api/v1/auth/login`
 
 **Request Body:**
 ```json
@@ -108,7 +108,7 @@ Login via the REST API:
       "role": "ADMIN"
     },
       "accessToken": "access token",
-        "refreshToken": "refresh token"
+       "refreshToken": "refresh token"
   }
 }
 ```
