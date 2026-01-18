@@ -35,6 +35,10 @@ export enum EmailProvider {
     BREVO = 'brevo'
 }
 
+export enum UserRole {
+    ADMIN = 'ADMIN'
+}
+
 export type THttpResponse = {
     success: boolean
     statusCode: number
