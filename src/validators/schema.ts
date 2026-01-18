@@ -1,6 +1,7 @@
 import Joi from 'joi'
 import { EApplicationEnvironment, EmailProvider } from '../types/common.types'
 import { CreateApiKeyDto, CreateProjectDto, UpdateApiKeyDto, UpdateProjectDto } from '../types/project.types'
+import { CreateUserDto, LoginDto, ResetPasswordDto } from '../types/user.types'
 
 export const createProjectSchema = Joi.object<CreateProjectDto>({
     name: Joi.string().min(3).max(255).required(),
@@ -50,3 +51,22 @@ export const updateApiKeySchema = Joi.object<UpdateApiKeyDto>({
     isActive: Joi.boolean().optional(),
     expiresAt: Joi.date().greater('now').optional()
 }).min(1)
+
+// ==================== USER SCHEMAS ====================
+
+export const createUserSchema = Joi.object<CreateUserDto>({
+    email: Joi.string().email().required(),
+    password: Joi.string().min(8).max(128).required(),
+    name: Joi.string().min(2).max(255).required()
+})
+
+export const loginSchema = Joi.object<LoginDto>({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+})
+
+export const resetPasswordSchema = Joi.object<ResetPasswordDto>({
+    email: Joi.string().email().required(),
+    resetToken: Joi.string().required(),
+    newPassword: Joi.string().min(8).max(128).required()
+})
