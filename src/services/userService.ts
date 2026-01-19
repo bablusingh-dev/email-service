@@ -1,5 +1,5 @@
 import RepositoryFactory from '../repositories/RepositoryFactory'
-import { CreateUserDto, LoginDto, ResetPasswordDto, LoginResponseDto } from '../types/user.types'
+import { CreateUserDto, LoginDto, ResetPasswordDto, LoginResponseDto, User } from '../types/user.types'
 import { AppError } from '../utils/appError'
 import { hashPassword, comparePassword, generateResetToken } from '../utils/password'
 import { generateTokenPair } from '../utils/jwt'
@@ -100,6 +100,10 @@ class UserService {
     async getUserByEmail(email: string) {
         return await this.userRepository.findByEmail(email)
     }
+    async getUserById(id: number): Promise<User | null> {
+        return await this.userRepository.findById(id)
+    }
 }
 
 export default new UserService()
+
