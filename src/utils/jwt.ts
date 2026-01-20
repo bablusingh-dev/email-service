@@ -14,8 +14,8 @@ export interface TokenPair {
 
 const JWT_SECRET = config.JWT_SECRET
 const JWT_REFRESH_SECRET = config.JWT_REFRESH_SECRET
-const ACCESS_TOKEN_EXPIRY = '30m'
-const REFRESH_TOKEN_EXPIRY = '7d'
+const ACCESS_TOKEN_EXPIRY = parseInt(config.JWT_EXPIRY)
+const REFRESH_TOKEN_EXPIRY = parseInt(config.JWT_REFRESH_EXPIRY)
 
 export function generateAccessToken(payload: JwtPayload): string {
     return jwt.sign(payload, JWT_SECRET, {

@@ -9,6 +9,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import { globalRateLimit } from './middleware/rateLimit'
 import authRouer from './routes/authRouter'
+import cookieParser from 'cookie-parser'
 
 const app: Application = express()
 
@@ -24,6 +25,8 @@ app.use(
 app.use(express.json())
 app.use(globalRateLimit)
 app.use(express.static(path.join(__dirname, '../', 'public')))
+ 
+app.use(cookieParser())
 
 // Routes
 app.use('/', router)

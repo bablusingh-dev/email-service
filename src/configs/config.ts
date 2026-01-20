@@ -14,5 +14,7 @@ export default {
     GLOBAL_RATE_LIMIT: process.env.GLOBAL_RATE_LIMIT,
     API_KEY_CACHE_TTL: process.env.API_KEY_CACHE_TTL || '300',
     JWT_SECRET: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
-    JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key-change-in-production'
+    JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET || 'your-refresh-secret-key-change-in-production',
+    JWT_EXPIRY: process.env.JWT_EXPIRY || '1800', // 30 minutes
+    JWT_REFRESH_EXPIRY: process.env.JWT_REFRESH_EXPIRY || '604800' // 7 days
 } as const
