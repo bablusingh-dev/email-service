@@ -83,3 +83,63 @@ export const emailTemplates = pgTable(
         index('email_templates_name_idx').on(emailTemplates.name)
     ]
 )
+// ==================== EMAIL HISTORY TABLE ====================
+export const emailHistory = pgTable(
+    'email_history',
+    {
+        id: serial('id').primaryKey(),
+        emailId: uuid('email_id').notNull(),
+        projectId: integer('project_id')
+            .notNull()
+            .references(() => projects.id, { onDelete: 'cascade' }),
+        status: varchar('status', { length: 20 }).notNull(), // sent, delivered, opened, clicked, bounced, failed
+        toEmail: varchar('to_email', { length: 255 }).notNull(),
+        subject: varchar('subject', { length: 500 }).notNull(),
+        provider: varchar('provider', { length: 50 }).notNull(),
+        providerMessageId: varchar('provider_message_id', { length: 255 }),
+
+        // Tracking timestamps
+        sentAt: timestamp('sent_at'),
+        deliveredAt: timestamp('delivered_at'),
+        openedAt: timestamp('opened_at'),
+        clickedAt: timestamp('clicked_at'),
+        bouncedAt: timestamp('bounced_at'),
+
+        errorMessage: text('error_message'),
+        metadata: jsonb('metadata').$type<Record<string, unknown>>(),
+
+        createdAt: timestamp('created_at').notNull().defaultNow()
+    },
+    (emailHistory) => [
+        index('email_history_email_id_idx').on(emailHistory.emailId),
+        index('email_history_project_id_idx').on(emailHistory.projectId),
+        index('email_history_created_at_idx').on(emailHistory.createdAt),
+        index('email_history_status_idx').on(emailHistory.status)
+    ]
+)
+
+
+
+// ==================== WEBHOOK LOGS TABLE ====================
+export const webhookLogs = pgTable(
+    'webhook_logs',
+    {
+        id: serial('id').primaryKey(),
+        emailId: uuid('email_id').notNull(),
+        projectId: integer('project_id')
+            .notNull()
+            .references(() => projects.id, { onDelete: 'cascade' }),
+        webhookUrl: text('webhook_url').notNull(),
+        payload: jsonb('payload').notNull().$type<Record<string, unknown>>(),
+        responseStatus: integer('response_status'),
+        responseBody: text('response_body'),
+        attempts: integer('attempts').notNull().default(1),
+        sentAt: timestamp('sent_at'),
+        createdAt: timestamp('created_at').notNull().defaultNow()
+    },
+    (webhookLogs) => [
+        index('webhook_logs_email_id_idx').on(webhookLogs.emailId),
+        index('webhook_logs_project_id_idx').on(webhookLogs.projectId),
+        index('webhook_logs_created_at_idx').on(webhookLogs.createdAt)
+    ]
+)
