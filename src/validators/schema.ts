@@ -70,3 +70,56 @@ export const resetPasswordSchema = Joi.object<ResetPasswordDto>({
     resetToken: Joi.string().required(),
     newPassword: Joi.string().min(8).max(128).required()
 })
+
+// ==================== EMAIL SCHEMAS ====================
+
+export const sendEmailSchema = Joi.object({
+    toEmail: Joi.string().email().required(),
+    toName: Joi.string().max(255).optional(),
+    ccEmails: Joi.array().items(Joi.string().email()).max(10).optional(),
+    bccEmails: Joi.array().items(Joi.string().email()).max(10).optional(),
+    fromEmail: Joi.string().email().optional(),
+    fromName: Joi.string().max(255).optional(),
+    replyTo: Joi.string().email().optional(),
+    subject: Joi.string().min(1).max(500).required(),
+    htmlBody: Joi.string().optional(),
+    textBody: Joi.string().optional(),
+    templateId: Joi.number().integer().optional(),
+    templateVariables: Joi.object().optional(),
+    attachments: Joi.array()
+        .items(
+            Joi.object({
+                filename: Joi.string().required(),
+                content: Joi.string().required(), // Base64
+                contentType: Joi.string().optional()
+            })
+        )
+        .max(5)
+        .optional(),
+    customHeaders: Joi.object().optional(),
+    scheduledAt: Joi.date().greater('now').optional(),
+    priority: Joi.number().integer().min(1).max(10).optional(),
+    maxAttempts: Joi.number().integer().min(1).max(10).optional()
+})
+
+export const sendBulkEmailSchema = Joi.object({
+    emails: Joi.array().items(sendEmailSchema).min(1).max(100).required()
+})
+
+// ==================== QUERY SCHEMAS ====================
+
+export const paginationSchema = Joi.object({
+    page: Joi.number().integer().min(1).optional(),
+    limit: Joi.number().integer().min(1).max(100).optional(),
+    sortBy: Joi.string().optional(),
+    sortOrder: Joi.string().valid('asc', 'desc').optional()
+})
+
+export const emailHistoryFilterSchema = Joi.object({
+    status: Joi.string().optional(),
+    startDate: Joi.date().optional(),
+    endDate: Joi.date().optional(),
+    toEmail: Joi.string().email().optional(),
+    page: Joi.number().integer().min(1).optional(),
+    limit: Joi.number().integer().min(1).max(100).optional()
+})
